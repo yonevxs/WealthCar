@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth Car | O Controle do seu Veículo na Palma da Mão</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="img/logo_wealthcar.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#150f8c',
+                        primaryHover: '#0b075e',
+                        light: '#f8fafc',
+                        dark: '#1e293b',
+                        accent: '#00a8ff'
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-montserrat text-dark leading-relaxed bg-white">
+
+    <header class="bg-primary text-white flex flex-col md:flex-row justify-between items-center px-8 md:px-16 py-4 sticky top-0 z-50 shadow-md">
+        <div class="flex items-center gap-3 text-2xl font-bold mb-4 md:mb-0 cursor-pointer">
+            <img src="./img/logo_wealthcar.png" alt="Logo Wealth Car" class="w-15 h-10">
+            <span>Wealth Car</span>
+        </div>
+        <nav>
+            <ul class="flex flex-wrap justify-center items-center gap-6">
+                <li><a href="#recursos" class="text-white/90 hover:text-white transition-colors font-semibold text-sm">Recursos</a></li>
+                <li><a href="#sobre" class="text-white/90 hover:text-white transition-colors font-semibold text-sm">Como Funciona</a></li>
+                <li>
+                    <a href="#baixar" class="bg-accent hover:bg-blue-500 text-white px-5 py-2 rounded-full font-bold text-sm transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Baixar App
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="relative bg-[linear-gradient(rgba(21,15,140,0.8),rgba(0,0,0,0.7)),url('https://images.unsplash.com/photo-1602951172321-fe0aa8865e6b?w=1920&q=80&auto=format&fit=crop')] bg-cover bg-center min-h-[500px] flex flex-col justify-center items-center text-white text-center px-5 py-20">
+        <span class="bg-accent/20 text-accent border border-accent/50 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6 backdrop-blur-sm">O seu carro inteligente</span>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 max-w-4xl drop-shadow-lg leading-tight">O Controle do seu Veículo <br class="hidden md:block">na Palma da Mão</h1>
+        <p class="text-lg md:text-xl font-medium max-w-2xl mb-10 text-gray-200 drop-shadow-md">Conecte seu veículo ao nosso app e receba dados precisos de desempenho, alertas de manutenção e localização em tempo real.</p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4">
+            <button class="bg-white text-dark flex items-center justify-center gap-3 py-3 px-6 rounded-lg font-bold hover:bg-gray-100 transition-colors shadow-lg w-full sm:w-auto">
+                <i class="fa-brands fa-apple text-2xl"></i>
+                <div class="text-left">
+                    <span class="block text-[0.65rem] font-medium leading-none uppercase text-gray-500">Baixar na</span>
+                    <span class="block text-sm leading-none mt-1">App Store</span>
+                </div>
+            </button>
+            <button class="bg-transparent border-2 border-white text-white flex items-center justify-center gap-3 py-3 px-6 rounded-lg font-bold hover:bg-white/10 transition-colors shadow-lg w-full sm:w-auto">
+                <i class="fa-brands fa-google-play text-xl"></i>
+                <div class="text-left">
+                    <span class="block text-[0.65rem] font-medium leading-none uppercase text-gray-300">Disponível no</span>
+                    <span class="block text-sm leading-none mt-1">Google Play</span>
+                </div>
+            </button>
+        </div>
+    </section>
+
+    <section id="recursos" class="py-20 px-6 md:px-16 text-center bg-[#F3E8E8]">
+        <h2 class="text-3xl font-bold text-dark mb-4">Por que usar o Wealth Car?</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto mb-16">Tudo o que você precisa para gerenciar, proteger e otimizar o uso do seu carro, reunido em um aplicativo simples e intuitivo.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div class="w-16 h-16 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-2xl mb-6 mx-auto">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3 class="text-xl font-bold text-dark mb-3">Telemetria em Tempo Real</h3>
+                <p class="text-sm text-gray-600">Acompanhe consumo de combustível, velocidade média e saúde do motor diretamente na tela do seu celular.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div class="w-16 h-16 bg-accent/10 text-accent rounded-xl flex items-center justify-center text-2xl mb-6 mx-auto">
+                    <i class="fa-solid fa-wrench"></i>
+                </div>
+                <h3 class="text-xl font-bold text-dark mb-3">Alertas Preventivos</h3>
+                <p class="text-sm text-gray-600">Nunca mais esqueça a troca de óleo. O app te avisa sobre revisões, calibragem de pneus e desgaste de peças.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div class="w-16 h-16 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-2xl mb-6 mx-auto">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h3 class="text-xl font-bold text-dark mb-3">Rastreamento e Segurança</h3>
+                <p class="text-sm text-gray-600">Saiba exatamente onde seu veículo está estacionado e receba notificações em caso de movimentações suspeitas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="py-20 px-6 md:px-16 bg-white overflow-hidden">
+        <div class="flex flex-col lg:flex-row items-center max-w-6xl mx-auto gap-16">
+            <div class="flex-1 text-center lg:text-left">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-6">Seu carro conectado em minutos.</h2>
+                <p class="text-base text-gray-600 mb-6">Nossa missão é transformar informações automotivas complexas em conhecimento acessível. Ajudamos motoristas comuns e frotistas a tomarem decisões seguras, economizando tempo e dinheiro.</p>
+                
+                <ul class="text-left space-y-4 mb-8 inline-block lg:block">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-check text-accent mt-1"></i>
+                        <span class="text-gray-700 font-medium">Instalação rápida e sem fios (Plug & Play via OBD2).</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-check text-accent mt-1"></i>
+                        <span class="text-gray-700 font-medium">Interface amigável e relatórios simplificados.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-check text-accent mt-1"></i>
+                        <span class="text-gray-700 font-medium">Suporte técnico especializado 24/7.</span>
+                    </li>
+                </ul>
+
+                <a href="#baixar" class="inline-flex items-center gap-2 text-primary font-bold hover:text-accent transition-colors">
+                    Conheça os planos <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="flex-1 relative flex justify-center">
+                <div class="absolute w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-primary/5 rounded-full -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                <img src="./img/lancer_branca.png" alt="Carro Wealth Car" class="relative z-10 w-full max-w-[500px] drop-shadow-[0_20px_25px_rgba(0,0,0,0.15)] hover:scale-105 transition-transform duration-500">
+            </div>
+        </div>
+    </section>
+
+    <section id="baixar" class="bg-primary text-white py-16 text-center px-5 border-t-4 border-accent">
+        <h2 class="text-3xl font-bold mb-4">Pronto para assumir a direção dos seus dados?</h2>
+        <p class="mb-8 text-gray-300 max-w-xl mx-auto">Junte-se a milhares de motoristas que já estão economizando e dirigindo com mais segurança. O download é gratuito.</p>
+        <button class="bg-accent hover:bg-blue-500 text-white py-4 px-10 text-lg font-bold rounded-full transition-all shadow-lg hover:shadow-2xl transform hover:-translate-y-1">
+            Criar Minha Conta Grátis
+        </button>
+    </section>
+
+    <footer class="bg-dark text-gray-400 py-10 px-6 text-center">
+        <div class="mb-6 flex justify-center items-center gap-3 text-white text-xl font-bold opacity-80">
+            <!-- <i class="fa-solid fa-car-side text-accent"></i> -->
+             <img src="./img/logo_wealthcar.png" alt="Logo Wealth Car" class="w-15 h-6">
+            <span>Wealth Car</span>
+        </div>
+        <p class="text-sm font-medium">© 2026 Wealth Car. Todos os direitos reservados.</p>
+        <div class="mt-4 space-x-4 text-sm">
+            <a href="#" class="hover:text-white transition-colors">Termos de Uso</a>
+            <span class="opacity-50">|</span>
+            <a href="#" class="hover:text-white transition-colors">Política de Privacidade</a>
+        </div>
+    </footer>
+
+</body>
+</html>
