@@ -44,6 +44,15 @@ export default function Navbar() {
                 Baixar App
               </Link>
             </li>
+            <li>
+              <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="bg-white text-primary px-5 py-2 rounded-full text-center font-bold"
+              >
+                Entrar
+              </Link>
+            </li>
           </ul>
         </nav>
 

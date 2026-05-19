@@ -31,15 +31,22 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-
-      // No handleSubmit:
       const { error } = await supabase.auth.signInWithPassword({
         email: form.email,
         password: form.senha,
       })
-
       if (error) throw new Error(error.message)
-      router.push('/dashboard');
+
+      // Verifica se já tem veículo cadastrado
+      const { data: { user } } = await supabase.auth.getUser()
+      const { data: veiculo }  = await supabase
+        .from("veiculo")
+        .select("id_veiculo")
+        .eq("id_usuario", user!.id)
+        .maybeSingle()
+
+      // Primeira vez → onboarding | Já tem → dashboard
+      router.push(veiculo ? "/dashboard" : "/onboarding")
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Erro ao fazer login. Tente novamente.");
     } finally {

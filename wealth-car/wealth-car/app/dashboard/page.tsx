@@ -90,7 +90,14 @@ export default function DashboardPage() {
         .eq("id_usuario", user.id)
         .maybeSingle();
 
-      if (!error && data) setVeiculo(data as Veiculo);
+      if (!error && data) {
+        setVeiculo(data as Veiculo);
+      } else {
+        // Primeira vez — redireciona para cadastrar veículo
+        router.push("/onboarding");
+        return;
+      }
+
       setLoadingV(false);
     };
     load();
