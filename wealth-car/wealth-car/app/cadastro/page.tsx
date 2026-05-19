@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Eye, EyeOff, Loader2, Check, X } from "lucide-react";
+import { supabase } from '@/lib/supabase'
 
 /* ── Regras de senha ─────────────────────────────────────────────── */
 interface Rule {
@@ -69,27 +70,16 @@ export default function CadastroPage() {
 
     setLoading(true);
     try {
-      // TODO: Substituir pelo endpoint real da API
-      // const res = await fetch("/api/auth/register", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({
-      //     username: form.usuario,
-      //     email: form.email,
-      //     password: form.senha,
-      //   }),
-      // });
-      // if (!res.ok) {
-      //   const data = await res.json();
-      //   throw new Error(data.message || "Erro ao criar conta.");
-      // }
+      const { error } = await supabase.auth.signUp({
+      email: form.email,
+      password: form.senha,
+      options: {
+        data: { username: form.usuario }
+      }
+    })
 
-      await new Promise((r) => setTimeout(r, 1400));
-      
-      // Salva o usuário no localStorage para simular uma sessão
-      localStorage.setItem("usuario", form.usuario);
-      
-      router.push("/login");
+    if (error) throw new Error(error.message)
+    router.push('/login')
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Erro ao criar conta. Tente novamente.");
     } finally {

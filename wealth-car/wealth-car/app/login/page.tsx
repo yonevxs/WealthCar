@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { supabase } from '@/lib/supabase'
 
 export default function LoginPage() {
   const router = useRouter();
@@ -30,19 +31,15 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      // TODO: Substituir pelo endpoint real da API
-      // const res = await fetch("/api/auth/login", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(form),
-      // });
-      // if (!res.ok) throw new Error("Credenciais inválidas.");
-      // const data = await res.json();
-      // localStorage.setItem("token", data.token);
 
-      // Simulação temporária — redireciona ao dashboard
-      await new Promise((r) => setTimeout(r, 1200));
-      router.push("/dashboard");
+      // No handleSubmit:
+      const { error } = await supabase.auth.signInWithPassword({
+        email: form.email,
+        password: form.senha,
+      })
+
+      if (error) throw new Error(error.message)
+      router.push('/dashboard');
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Erro ao fazer login. Tente novamente.");
     } finally {
