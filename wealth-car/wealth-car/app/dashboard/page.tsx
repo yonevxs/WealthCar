@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useBLE } from "@/hook/useBLE";
+import { getCarImageUrl } from "@/lib/carImage";
 import {
   Gauge,
   Thermometer,
@@ -267,47 +268,69 @@ export default function DashboardPage() {
         {loadingV ? (
           <div className="bg-white rounded-xl border border-gray-200 px-5 py-4 mb-6 shadow-sm animate-pulse h-16" />
         ) : veiculo ? (
-          <div className="bg-white rounded-xl border border-gray-200 px-5 py-4 mb-6 shadow-sm">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                <Car className="w-5 h-5 text-primary" />
-              </div>
+            <div className="bg-white rounded-xl border border-gray-200 px-5 py-4 mb-6 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
 
-              <div className="flex-1">
-                <p className="font-bold text-gray-900 text-sm">
-                  {veiculo.nome_apelido || `${veiculo.marca} ${veiculo.modelo}`}
-                </p>
-                <p className="text-xs text-gray-500">
-                  {veiculo.marca} {veiculo.modelo} · {veiculo.ano}
-                </p>
-              </div>
+                {/* ── Imagem do carro ── */}
+                <div className="relative w-36 h-24 flex-shrink-0">
+                  <Image
+                    src={getCarImageUrl(veiculo.marca, veiculo.modelo, veiculo.ano)}
+                    alt={veiculo.nome_apelido}
+                    fill
+                    className="object-contain drop-shadow-md"
+                    onError={(e) => {
+                      // Imagem não encontrada → esconde e mostra ícone
+                      e.currentTarget.style.display = "none";
+                      document.getElementById("car-icon-fallback")?.classList.remove("hidden");
+                    }}
+                  />
+                  {/* Fallback — ícone padrão se imagem não existir */}
+                  <div
+                    id="car-icon-fallback"
+                    className="hidden w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center absolute inset-0 m-auto"
+                  >
+                    <Car className="w-5 h-5 text-primary" />
+                  </div>
+                </div>
 
-              <div className="flex flex-wrap gap-3 text-xs text-gray-500">
-                <span className="flex items-center gap-1">
-                  <Hash size={12} /> {veiculo.placa}
-                </span>
-                <span className="flex items-center gap-1">
-                  <Gauge size={12} /> {veiculo.quilometragem_atual?.toLocaleString("pt-BR")} km
-                </span>
-                <span className="flex items-center gap-1">
-                  <Calendar size={12} /> Sync: {formatSync(veiculo.ultima_sincronizacao)}
-                </span>
-              </div>
+                {/* ── Info principal ── */}
+                <div className="flex-1">
+                  <p className="font-bold text-gray-900 text-sm">
+                    {veiculo.nome_apelido || `${veiculo.marca} ${veiculo.modelo}`}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    {veiculo.marca} {veiculo.modelo} · {veiculo.ano}
+                  </p>
+                </div>
 
-              {/* Badge status BLE */}
-              {conectado ? (
-                <span className="flex items-center gap-1.5 text-xs text-green-600 font-medium bg-green-50 px-2.5 py-1 rounded-full border border-green-200 flex-shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                  ESP32 ao vivo
-                </span>
-              ) : (
-                <span className="flex items-center gap-1.5 text-xs text-gray-400 font-medium bg-gray-50 px-2.5 py-1 rounded-full border border-gray-200 flex-shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
-                  BLE desconectado
-                </span>
-              )}
+                {/* ── Detalhes ── */}
+                <div className="flex flex-wrap gap-3 text-xs text-gray-500">
+                  <span className="flex items-center gap-1">
+                    <Hash size={12} /> {veiculo.placa}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Gauge size={12} /> {veiculo.quilometragem_atual?.toLocaleString("pt-BR")} km
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Calendar size={12} /> Sync: {formatSync(veiculo.ultima_sincronizacao)}
+                  </span>
+                </div>
+
+                {/* ── Badge BLE ── */}
+                {conectado ? (
+                  <span className="flex items-center gap-1.5 text-xs text-green-600 font-medium bg-green-50 px-2.5 py-1 rounded-full border border-green-200 flex-shrink-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                    ESP32 ao vivo
+                  </span>
+                ) : (
+                  <span className="flex items-center gap-1.5 text-xs text-gray-400 font-medium bg-gray-50 px-2.5 py-1 rounded-full border border-gray-200 flex-shrink-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+                    BLE desconectado
+                  </span>
+                )}
+
+              </div>
             </div>
-          </div>
         ) : (
           <div className="bg-white rounded-xl border border-dashed border-gray-300 px-5 py-6 mb-6 text-center">
             <Car className="w-8 h-8 text-gray-300 mx-auto mb-2" />
